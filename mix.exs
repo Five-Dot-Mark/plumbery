@@ -27,7 +27,7 @@ defmodule Plumbery.MixProject do
 
   defp deps do
     [
-      {:spark, "~> 2.2.29"},
+      {:spark, "~> 2.4.0"},
       {:ex_doc, "~> 0.34", only: [:dev, :test], runtime: false}
     ]
   end

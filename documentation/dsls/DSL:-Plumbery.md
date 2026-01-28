@@ -39,7 +39,7 @@ pipeline name
 
 | Name | Type | Default | Docs |
 |------|------|---------|------|
-| [`name`](#plumbery-pipeline-name){: #plumbery-pipeline-name .spark-required} | `atom` |  | The name of the pipeline |
+| [`name`](#plumbery-pipeline-name){: #plumbery-pipeline-name .spark-required} | `atom` |  | The name of the pipeline. This becomes the name of the generated function |
 ### Options
 
 | Name | Type | Default | Docs |
@@ -68,15 +68,41 @@ Adds a pipe to pipeline.
 |------|------|---------|------|
 | [`function`](#plumbery-pipeline-pipe-function){: #plumbery-pipeline-pipe-function } | `atom \| {module, atom}` |  | Function to call. Can be either local function name specified as atom, or remote function specified as {Module, :function} tuple. Local functions can be private |
 
+
+
+
+
+
+### Introspection
+
+Target: `Plumbery.Pipe`
+
+## plumbery.pipeline.escape_on_error
+```elixir
+escape_on_error escape
+```
+
+
+
+
+
+
+
+
 ### Arguments
 
 | Name | Type | Default | Docs |
 |------|------|---------|------|
-| [`escape`](#plumbery-pipeline-escape_on_error-escape){: #plumbery-pipeline-escape_on_error-escape } | `boolean` |  |  |
+| [`escape`](#plumbery-pipeline-escape_on_error-escape){: #plumbery-pipeline-escape_on_error-escape } | `boolean` | `true` | When true, the pipeline will not call any more pipes as soon as one of the pipes returns an error |
 
 
 
 
+
+
+### Introspection
+
+Target: `Plumbery.EscapeOnError`
 
 ## plumbery.pipeline.inlet
 ```elixir
@@ -94,19 +120,29 @@ inlet signature
 
 | Name | Type | Default | Docs |
 |------|------|---------|------|
-| [`signature`](#plumbery-pipeline-inlet-signature){: #plumbery-pipeline-inlet-signature .spark-required} | `any` |  |  |
+| [`signature`](#plumbery-pipeline-inlet-signature){: #plumbery-pipeline-inlet-signature .spark-required} | `any` |  | Signature of generated function. Named arguments will be copied to request's `command` |
 ### Options
 
 | Name | Type | Default | Docs |
 |------|------|---------|------|
-| [`request`](#plumbery-pipeline-inlet-request){: #plumbery-pipeline-inlet-request } | `module` |  |  |
-| [`command`](#plumbery-pipeline-inlet-command){: #plumbery-pipeline-inlet-command } | `module` |  |  |
-| [`use_context`](#plumbery-pipeline-inlet-use_context){: #plumbery-pipeline-inlet-use_context } | `boolean` |  |  |
+| [`request`](#plumbery-pipeline-inlet-request){: #plumbery-pipeline-inlet-request } | `module` | `Plumbery.Request` | Module that provides the struct to be used as request |
+| [`command`](#plumbery-pipeline-inlet-command){: #plumbery-pipeline-inlet-command } | `module` |  | Module that provides the struct to be used as command. If not specified, a map will be used |
+| [`use_context`](#plumbery-pipeline-inlet-use_context){: #plumbery-pipeline-inlet-use_context } | `boolean` |  | When true, an aditional argument will be added to the function, and its value will be copied to request's `context` field |
 
 
 
 
 
+### Introspection
+
+Target: `Plumbery.Inlet`
+
+
+
+
+### Introspection
+
+Target: `Plumbery.Pipeline`
 
 ## plumbery.inlet
 ```elixir
@@ -124,19 +160,23 @@ inlet signature
 
 | Name | Type | Default | Docs |
 |------|------|---------|------|
-| [`signature`](#plumbery-inlet-signature){: #plumbery-inlet-signature .spark-required} | `any` |  |  |
+| [`signature`](#plumbery-inlet-signature){: #plumbery-inlet-signature .spark-required} | `any` |  | Signature of generated function. Named arguments will be copied to request's `command` |
 ### Options
 
 | Name | Type | Default | Docs |
 |------|------|---------|------|
-| [`pipeline`](#plumbery-inlet-pipeline){: #plumbery-inlet-pipeline .spark-required} | `module \| {module, atom}` |  |  |
-| [`request`](#plumbery-inlet-request){: #plumbery-inlet-request } | `module` |  |  |
-| [`command`](#plumbery-inlet-command){: #plumbery-inlet-command } | `module` |  |  |
-| [`use_context`](#plumbery-inlet-use_context){: #plumbery-inlet-use_context } | `boolean` |  |  |
+| [`pipeline`](#plumbery-inlet-pipeline){: #plumbery-inlet-pipeline .spark-required} | `module \| {module, atom}` |  | Pipeline to call |
+| [`request`](#plumbery-inlet-request){: #plumbery-inlet-request } | `module` | `Plumbery.Request` | Module that provides the struct to be used as request |
+| [`command`](#plumbery-inlet-command){: #plumbery-inlet-command } | `module` |  | Module that provides the struct to be used as command. If not specified, a map will be used |
+| [`use_context`](#plumbery-inlet-use_context){: #plumbery-inlet-use_context } | `boolean` |  | When true, an aditional argument will be added to the function, and its value will be copied to request's `context` field |
 
 
 
 
+
+### Introspection
+
+Target: `Plumbery.Inlet`
 
 
 

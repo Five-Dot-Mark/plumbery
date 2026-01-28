@@ -6,8 +6,9 @@ defmodule Plumbery.Pipeline do
             doc: nil,
             unwrap: false,
             private: false,
-            inlets: [],
-            file_line: nil
+            inlets: [], 
+            file_line: nil,
+            __spark_metadata__: nil
 
   @doc false
   defmacro compile(pipeline) do

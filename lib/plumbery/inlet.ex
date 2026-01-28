@@ -9,7 +9,8 @@ defmodule Plumbery.Inlet do
             name: nil,
             when: [],
             args: [],
-            arg_names: []
+            arg_names: [], 
+  __spark_metadata__: nil 
 
   @doc false
   defmacro compile(inlet, module) do
